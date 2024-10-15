@@ -6,12 +6,17 @@ import { getAll } from './GitRepo/gitrepo.service';
 function App() {
   const [gitRepo, setGitRepo] = useState<GitRepo[]>([]);
   const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const getData = () => {
-    console.log(username)
-    getAll(username)
-      .then(response => setGitRepo(response.data.items))
-      .catch(error => console.log(error.message));
+    if (username !== "") {
+      setIsLoading(true)
+      setGitRepo([])
+      getAll(username)
+        .then(response => setGitRepo(response.data.items))
+        .catch(error => console.log(error.message))
+        .finally(() => setIsLoading(false))
+    }
   }
   return (
     <div className="container">
@@ -22,13 +27,14 @@ function App() {
           <button className='btn btn-primary' onClick={() => getData()}>Search</button>
         </div>
       </section>
+      {isLoading && <h3 className="jumbotron-heading">Loading data......</h3>}
       <div className="row">
         {gitRepo.map((git) => (
           <div className="card">
-            <a href={git.url} target="_blank">
+            <a href={git.html_url} target="_blank">
               <img src={git.avatar_url} style={{ width: '100px' }} />
             </a>
-            <p className="card-text">{git.name}</p>
+            <p className="card-text">{git.login}</p>
           </div>
         ))}
       </div>
