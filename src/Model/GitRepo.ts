@@ -1,5 +1,3 @@
 export default class GitRepo {
-    constructor(public name: string, public link: string, public imageUrl: string) {
-
-    }
+    constructor(public id: number, public avatar_url: string, public url: string) { }
 }

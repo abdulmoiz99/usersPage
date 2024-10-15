@@ -1,6 +1,5 @@
 import http from '../axios-instance'
-import GitRepo from '../Model/GitRepo'
 
-export const getAll = () => {
-    return http.get<GitRepo[]>("githubRepo");
+export const getAll = (username: string) => {
+    return http.get(`/search/users?q=${username}`);
 }
