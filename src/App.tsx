@@ -1,6 +1,16 @@
+import { useEffect, useState } from 'react';
 import './App.css'
+import GitRepo from './Model/GitRepo';
+import { getAll } from './GitRepo/gitrepo.service';
 
 function App() {
+  const [gitRepo, setGitRepo] = useState<GitRepo[]>([]);
+  useEffect(() => {
+
+    getAll()
+      .then(response => setGitRepo(response.data))
+      .catch(error => console.log(error.message));
+  }, []);
 
   return (
     <div className="container">
@@ -12,36 +22,14 @@ function App() {
         </div>
       </section>
       <div className="row">
-        <div className="card">
-          <a href="https://github.com/reactjs" target="_blank">
-            <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{ width: '100px' }} />
-          </a>
-          <p className="card-text">reactjs</p>
-        </div>
-        <div className="card">
-          <a href="https://github.com/reactjs" target="_blank">
-            <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{ width: '100px' }} />
-          </a>
-          <p className="card-text">reactjs</p>
-        </div>
-        <div className="card">
-          <a href="https://github.com/reactjs" target="_blank">
-            <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{ width: '100px' }} />
-          </a>
-          <p className="card-text">reactjs</p>
-        </div>
-        <div className="card">
-          <a href="https://github.com/reactjs" target="_blank">
-            <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{ width: '100px' }} />
-          </a>
-          <p className="card-text">reactjs</p>
-        </div>
-        <div className="card">
-          <a href="https://github.com/reactjs" target="_blank">
-            <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{ width: '100px' }} />
-          </a>
-          <p className="card-text">reactjs</p>
-        </div>
+        {gitRepo.map((git) => (
+          <div className="card">
+            <a href={git.link} target="_blank">
+              <img src={git.imageUrl} style={{ width: '100px' }} />
+            </a>
+            <p className="card-text">{git.name}</p>
+          </div>
+        ))}
       </div>
     </div>
 

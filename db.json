@@ -1,0 +1,29 @@
+{
+    "githubRepo": [
+      {
+        "name": "reactjs",
+        "link": "https://github.com/reactjs",
+        "imageUrl": "https://avatars.githubusercontent.com/u/6412038?v=3",
+        "imageStyle": {
+          "width": "100px"
+        }
+      },
+      {
+        "name": "vuejs",
+        "link": "https://github.com/vuejs",
+        "imageUrl": "https://avatars.githubusercontent.com/u/6128107?v=3",
+        "imageStyle": {
+          "width": "100px"
+        }
+      },
+      {
+        "name": "angular",
+        "link": "https://github.com/angular",
+        "imageUrl": "https://avatars.githubusercontent.com/u/139426?v=3",
+        "imageStyle": {
+          "width": "100px"
+        }
+      }
+    ]
+  }
+  
